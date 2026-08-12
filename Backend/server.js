@@ -3,6 +3,9 @@ const cors = require("cors");
 const mongoose = require("mongoose");
 require("dotenv").config();
 
+const resourceRoutes = require("./routes/resourceRoutes");
+const reflectionRoutes = require("./routes/reflectionRoutes");
+
 const app = express();
 const PORT = process.env.PORT || 3001;
 
@@ -15,6 +18,9 @@ app.get("/api/health", (req, res) => {
         message: "MisandristMeesha backend is running."
     });
 });
+
+app.use("/api/resources", resourceRoutes);
+app.use("/api/reflections", reflectionRoutes);
 
 mongoose
     .connect(process.env.MONGODB_URI)
