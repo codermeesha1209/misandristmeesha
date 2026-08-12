@@ -38,6 +38,26 @@
   opacity: 1;
 }
 
+.navbar__toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 42px;
+  height: 42px;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  padding: 0.7rem;
+}
+
+.navbar__toggle span {
+  display: block;
+  width: 100%;
+  height: 2px;
+  background: var(--classic-rose);
+}
+
 .home,
 .page {
   min-height: calc(100vh - 72px);
@@ -391,17 +411,82 @@
   margin-top: 1rem;
 }
 
+.footer {
+  background: var(--brown-coffee);
+  color: var(--classic-rose);
+  padding: 4rem 10vw 1.5rem;
+}
+
+.footer__main {
+  display: flex;
+  justify-content: space-between;
+  gap: 4rem;
+  padding-bottom: 3rem;
+}
+
+.footer__brand {
+  font-family: "Playfair Display", serif;
+  font-size: 1.7rem;
+  font-weight: 700;
+}
+
+.footer__main p {
+  max-width: 420px;
+  margin: 1rem 0 0;
+  color: rgba(236, 208, 236, 0.7);
+  line-height: 1.7;
+}
+
+.footer nav {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.footer nav a {
+  color: rgba(236, 208, 236, 0.8);
+}
+
+.footer nav a:hover {
+  color: var(--classic-rose);
+}
+
+.footer__bottom {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  border-top: 1px solid rgba(236, 208, 236, 0.15);
+  padding-top: 1.5rem;
+  color: rgba(236, 208, 236, 0.5);
+  font-size: 0.8rem;
+}
+
 @media (max-width: 800px) {
   .navbar {
-    align-items: flex-start;
-    flex-direction: column;
-    gap: 1rem;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 1rem 7vw;
+  }
+
+  .navbar__toggle {
+    display: flex;
   }
 
   .navbar__links {
+    display: none;
     width: 100%;
-    justify-content: space-between;
-    gap: 0.5rem;
+    flex-direction: column;
+    gap: 0;
+    padding-top: 1rem;
+  }
+
+  .navbar__links--open {
+    display: flex;
+  }
+
+  .navbar__links a {
+    border-top: 1px solid rgba(236, 208, 236, 0.12);
+    padding: 1rem 0;
   }
 
   .hero {
@@ -431,5 +516,13 @@
   .public-reflections {
     padding-left: 7vw;
     padding-right: 7vw;
+  }
+
+  .footer__main {
+    flex-direction: column;
+  }
+
+  .footer__bottom {
+    flex-direction: column;
   }
 }

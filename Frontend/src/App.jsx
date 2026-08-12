@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
 import Home from "./pages/Home";
 import Resources from "./pages/Resources";
 import Reflections from "./pages/Reflections";
@@ -16,6 +17,8 @@ function App() {
                 <Route path="/resources/:id" element={<ResourceDetail />} />
                 <Route path="/reflections" element={<Reflections />} />
             </Routes>
+
+            <Footer />
         </BrowserRouter>
     );
 }
