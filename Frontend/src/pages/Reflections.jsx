@@ -50,9 +50,7 @@ function Reflections() {
             });
 
             setResponse("");
-            setMessage(
-                "Your reflection has been saved privately."
-            );
+            setMessage("Your reflection has been saved privately.");
         } catch (err) {
             setError("We couldn't save your reflection.");
         } finally {
@@ -62,39 +60,53 @@ function Reflections() {
 
     return (
         <main className="page">
-            <section className="page-header">
-                <p className="section-label">PERSONAL REFLECTION</p>
+            <section className="page-header reflection-header">
+                <p className="section-label">THE REFLECTION ROOM</p>
 
                 <h1>A space to think inward.</h1>
 
                 <p>
                     Reflection can help us notice the assumptions and
-                    expectations we encounter every day. Your response is
-                    private by default.
+                    expectations we encounter every day. There is no
+                    right answer here — only an invitation to think.
                 </p>
             </section>
 
             <section className="reflection-layout">
                 <form className="reflection-form" onSubmit={handleSubmit}>
-                    <p className="reflection-form__label">PROMPT</p>
+                    <div className="reflection-form__heading">
+                        <p className="reflection-form__label">
+                            TODAY'S PROMPT
+                        </p>
+
+                        <span className="reflection-form__private">
+                            PRIVATE
+                        </span>
+                    </div>
 
                     <h2>{reflectionPrompt}</h2>
 
                     <textarea
                         value={response}
                         onChange={(event) => setResponse(event.target.value)}
-                        placeholder="Write your thoughts here..."
+                        placeholder="Take your time. Write whatever comes to mind..."
                         rows="10"
                         aria-label="Your reflection"
                     />
 
-                    <button
-                        type="submit"
-                        className="button button--primary"
-                        disabled={submitting}
-                    >
-                        {submitting ? "Saving..." : "Save reflection"}
-                    </button>
+                    <div className="reflection-form__footer">
+                        <span>
+                            {response.length} characters
+                        </span>
+
+                        <button
+                            type="submit"
+                            className="button button--primary"
+                            disabled={submitting}
+                        >
+                            {submitting ? "Saving..." : "Save reflection"}
+                        </button>
+                    </div>
 
                     {message && (
                         <p className="status-message status-message--success">
@@ -110,15 +122,22 @@ function Reflections() {
                 </form>
 
                 <aside className="reflection-info">
-                    <p className="section-label">YOUR SPACE</p>
+                    <p className="section-label">A NOTE TO YOU</p>
 
-                    <h2>Private by default.</h2>
+                    <h2>You don't have to have the answer.</h2>
 
                     <p>
-                        Your reflection is saved without being displayed
-                        publicly. You can take the time to think honestly,
-                        without needing to perform your thoughts for anyone
-                        else.
+                        Reflection isn't about finding the perfect
+                        response. It is about slowing down enough to
+                        notice what we have learned, what we have
+                        accepted, and what we might want to question.
+                    </p>
+
+                    <div className="reflection-info__divider" />
+
+                    <p>
+                        Your response is saved privately and is not
+                        displayed in the community reflections below.
                     </p>
                 </aside>
             </section>
@@ -126,7 +145,13 @@ function Reflections() {
             <section className="public-reflections">
                 <div className="page-header page-header--small">
                     <p className="section-label">COMMUNITY REFLECTIONS</p>
+
                     <h2>Shared perspectives</h2>
+
+                    <p>
+                        These reflections are shared by people who have
+                        chosen to make their responses public.
+                    </p>
                 </div>
 
                 {loading && (
@@ -143,11 +168,15 @@ function Reflections() {
 
                 {!loading && reflections.length > 0 && (
                     <div className="reflection-grid">
-                        {reflections.map((reflection) => (
+                        {reflections.map((reflection, index) => (
                             <article
                                 className="reflection-card"
                                 key={reflection._id}
                             >
+                                <span className="reflection-card__number">
+                                    {String(index + 1).padStart(2, "0")}
+                                </span>
+
                                 <p>{reflection.response}</p>
                             </article>
                         ))}
